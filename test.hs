@@ -1,3 +1,6 @@
+
+import Data.Complex
+
 double x = x + x
 
 quadrupl x = double(double x)
@@ -89,5 +92,23 @@ parse p inp = p inp
 p +++ q = \inp -> case p inp of 
                    []          -> parse q inp
                    [(v,out)]   -> [(v,out)]
+
+eq2 :: Complex Double -> Complex Double -> Complex Double -> [Complex Double]
+eq2 0 _ _ = []
+eq2 a b c
+      | d == 0 = [root (+)]
+      | otherwise = [root (+), root (-)]
+  where d = b*b - 4*a*c
+        root sign = sign (-b) (sqrt d) / (2*a)
+
+
+--eq2   ::(Complex Double, Complex Double, Complex Double)->(Complex Double)
+--eq2 (0.0, _, _) = []
+--eq2 (a,b,c)
+--       | d == 0 =[root (+)]
+--       | otherwise = [root (+), root (-)]
+--  where d = b*b - 4*a*c
+--        root sign = sign (-b) (sqrt d) / (2*a)
+
 
 
